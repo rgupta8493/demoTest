@@ -9,6 +9,21 @@
     <script src="https://unpkg.com/scandit-sdk"></script>
 
     <style>
+
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
         body {
             margin: 0;
             padding: 0;
@@ -63,7 +78,8 @@
 <body>
     <!-- Containers for the picker and the results -->
     <div id="scandit-barcode-picker"></div>
-    <div id="scandit-barcode-result">No codes scanned yet</div>
+
+    <div id="modal">No codes scanned yet</div>
     <!-- Button to continue scanning after a barcode was scanned -->
     <button id="continue-scanning-button" onclick="continueScanning()">Continue Scanning</button>
 
@@ -83,7 +99,7 @@
         const engineLocation = "https://unpkg.com/scandit-sdk/build"
         ScanditSDK.configure(licenseKey, { engineLocation: engineLocation });
         const scannerContainer = document.getElementById("scandit-barcode-picker");
-        const resultContainer = document.getElementById("scandit-barcode-result");
+        const resultContainer = document.getElementById("modal");
         const continueButton = document.getElementById("continue-scanning-button");
         continueButton.disabled = true;
         continueButton.hidden = true;
@@ -111,6 +127,7 @@
                         string +
                         `${ScanditSDK.Barcode.Symbology.toHumanizedName(barcode.symbology)}: ${barcode.data}<br>`,
                         '');
+                     resultContainer.style.display="block";    
                 });
                 picker.onScanError(error => {
                     alert(error.message);
