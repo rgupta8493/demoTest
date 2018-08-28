@@ -10,7 +10,7 @@
 
     <style>
 
-    .modal {
+    #modal {
       display: none; /* Hidden by default */
       position: fixed; /* Stay in place */
       z-index: 1; /* Sit on top */
@@ -127,7 +127,7 @@
                         string +
                         `${ScanditSDK.Barcode.Symbology.toHumanizedName(barcode.symbology)}: ${barcode.data}<br>`,
                         '');
-                     resultContainer.style.display="block";    
+                     resultContainer.style.display="block";
                 });
                 picker.onScanError(error => {
                     alert(error.message);
