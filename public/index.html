@@ -24,6 +24,14 @@
       background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
 
+    #modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%; /* Could be more or less, depending on screen size */
+    }
+
         body {
             margin: 0;
             padding: 0;
@@ -79,7 +87,10 @@
     <!-- Containers for the picker and the results -->
     <div id="scandit-barcode-picker"></div>
 
-    <div id="modal">No codes scanned yet</div>
+    <div id="modal">
+     <div id="modal-content">
+     </div>
+     </div>
     <!-- Button to continue scanning after a barcode was scanned -->
     <button id="continue-scanning-button" onclick="continueScanning()">Continue Scanning</button>
 
@@ -99,7 +110,7 @@
         const engineLocation = "https://unpkg.com/scandit-sdk/build"
         ScanditSDK.configure(licenseKey, { engineLocation: engineLocation });
         const scannerContainer = document.getElementById("scandit-barcode-picker");
-        const resultContainer = document.getElementById("modal");
+        const resultContainer = document.getElementById("modal-content");
         const continueButton = document.getElementById("continue-scanning-button");
         continueButton.disabled = true;
         continueButton.hidden = true;
